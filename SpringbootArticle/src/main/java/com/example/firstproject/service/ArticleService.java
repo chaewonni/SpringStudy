@@ -48,7 +48,7 @@ public class ArticleService {
         }
         //4.업데이트하기
         target.patch(article); //기존 데이터에 새 데이터 붙이기 //!!(일부 데이터만 수정할 때)!!
-        Article updated = articleRepository.save(article); //article 엔티티 DB에 저장
+        Article updated = articleRepository.save(target); //article 엔티티 DB에 저장
         return updated;
     }
 
