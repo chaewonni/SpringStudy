@@ -8,10 +8,11 @@ import hello.core.member.MemberRepository;
 import hello.core.member.MemoryMemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 @Component
-@RequiredArgsConstructor //객체에 final이 붙은 애들의 생성자를 만들어줌
+//@RequiredArgsConstructor //객체에 final이 붙은 애들의 생성자를 만들어줌
 public class OrderServiceImpl implements OrderService{
 
     //DIP 지키고 있음 (인터페이스에만 의존)
@@ -35,10 +36,11 @@ public class OrderServiceImpl implements OrderService{
 //    }
 
     //requiredArgsConstructer 덕분에 필요없게됨
-//    public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy discountPolicy) {
-//        this.memberRepository = memberRepository;
-//        this.discountPolicy = discountPolicy;
-//    }
+    public OrderServiceImpl(MemberRepository memberRepository,
+                            @Qualifier("mainDiscountPolicy") DiscountPolicy discountPolicy) {
+        this.memberRepository = memberRepository;
+        this.discountPolicy = discountPolicy;
+    }
 
 //    //4.메서드 주입 (사용하는 일 거의 없음)
 //    @Autowired
