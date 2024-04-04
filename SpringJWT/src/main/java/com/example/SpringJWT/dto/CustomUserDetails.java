@@ -8,6 +8,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import java.util.ArrayList;
 import java.util.Collection;
 
+//DB기반 로그인 검증 로직
 @RequiredArgsConstructor
 public class CustomUserDetails implements UserDetails {
 
