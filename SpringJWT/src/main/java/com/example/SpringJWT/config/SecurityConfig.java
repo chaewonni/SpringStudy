@@ -1,5 +1,6 @@
 package com.example.SpringJWT.config;
 
+import com.example.SpringJWT.jwt.JWTFilter;
 import com.example.SpringJWT.jwt.JWTUtil;
 import com.example.SpringJWT.jwt.LoginFilter;
 import org.springframework.context.annotation.Bean;
@@ -61,6 +62,10 @@ public class SecurityConfig {
                         .requestMatchers("/login", "/", "/join").permitAll()
                         .requestMatchers("/admin").hasRole("ADMIN")
                         .anyRequest().authenticated());
+
+        //JWTFilter 등록
+        http
+                .addFilterBefore(new JWTFilter(jwtUtil), LoginFilter.class);
 
         //필터 추가 LoginFilter()는 인자를 받음 (AuthenticationManager() 메소드에 authenticationConfiguration 객체를 넣어야 함) 따라서 등록 필요
         //At은 원하는 자리에 등록, 위치는 usernamePasswordAuthenticationFilter에 등록
