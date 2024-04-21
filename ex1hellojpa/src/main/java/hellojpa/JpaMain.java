@@ -38,14 +38,19 @@ public class JpaMain {
             //영속
 //            Member member1 = new Member(150L, "A");
 //            Member member2 = new Member(160L, "B");
-
-            Member member = em.find(Member.class, 150L);
-            member.setName("ZZZZ");
+//
+//            Member member = em.find(Member.class, 150L);
+//            member.setName("ZZZZ");
             //알아서 update 쿼리 날라감
             //em.persist(member)할 필요 없음.
 
 //            em.persist(member1);
 //            em.persist(member2);
+
+            Member member = new Member(200L, "member200");
+            em.persist(member); //실제 데이터베이스에 이 쿼리 안날라감
+
+            em.flush(); //강제로 미리 데이터베이스에 반영 or 쿼리를 미리 보고 싶을 때
 
             System.out.println(" ========== ");
 
